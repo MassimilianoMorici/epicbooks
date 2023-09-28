@@ -1,7 +1,8 @@
-import MyNav from "./components/navbar/MyNav";
-import MyFooter from "./components/footer/MyFooter"
-import MyWelcome from "./components/welcome/MyWelcome";
-import LatestRelease from "./components/latestRelease/LatestRelease";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import BookDescription from "./pages/BookDescription";
 import SearchContext from "./contexts/SearchText";
 
 
@@ -12,10 +13,14 @@ function App() {
 
     <>
       <SearchContext>
-        <MyNav />
-        <MyWelcome />
-        <LatestRelease />
-        <MyFooter />
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/bookdescription" element={<BookDescription />} />
+
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
       </SearchContext>
     </>
 

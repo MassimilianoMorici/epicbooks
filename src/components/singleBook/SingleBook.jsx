@@ -3,22 +3,35 @@ import { Card, Button } from "react-bootstrap";
 
 
 
+const SingleBook = ({ book, selectedAsin, setSelectedAsin }) => {
 
-const SingleBook = ({ book }) => {
+    const isSelected = book.asin === selectedAsin;
+    const url = `/bookdescription?asin=${book.asin}`;
 
+    const handleClick = () => {
+        if (isSelected) {
+
+            setSelectedAsin(null);
+        } else {
+
+            setSelectedAsin(book.asin);
+        }
+    };
+
+    const cardClassName = `mb-4 border-4 ${isSelected ? 'border-danger' : ''}`;
 
 
     return (
-        <Card className="mb-4" style={{ width: '18rem' }}>
+        <Card className={cardClassName} style={{ width: '18rem' }} onClick={handleClick} >
             <Card.Img className="custom-card-img" style={{ height: '18rem' }} variant="top" src={book.img} />
             <Card.Body>
                 <Card.Title>{book.title}</Card.Title>
                 <Card.Text>
-                    <p>{book.category}</p>
-                    <p>Prezzo: {book.price}</p>
+                    Categoria: {book.category}<br />
+                    Prezzo: {book.price}
                 </Card.Text>
                 <Card.Text className="d-flex flex-wrap justify-content-evenly">
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button href={url} variant="primary">Dettagli</Button>
                     <span>{book.asin}</span>
                 </Card.Text>
             </Card.Body>
