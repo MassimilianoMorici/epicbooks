@@ -14,5 +14,19 @@ code {
 
 .custom-card-img {
   object-fit: cover;
+}
 
+
+
+.comments {
+  background-color: rgba(150, 150, 150, 0.063);
+  border-radius: 20px;
+  border: solid rgba(0, 0, 0, 0.157) 2px;
+  padding: 15px;
+  /* color: rgb(255, 255, 255); */
+}
+
+.imgPage {
+  object-fit: cover;
+  width: 300px;
 }
