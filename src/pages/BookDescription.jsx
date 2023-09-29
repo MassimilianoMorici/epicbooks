@@ -133,96 +133,9 @@ function BookDescription() {
                     </div>
                 </div>
             </div>
-            {/* <div className='container d-flex justify-content-center my-5'>
-                <h3>Aggiungi Commento: </h3>
-                <form onSubmit={postComment}>
-                    <input
-                        type="text"
-                        name="rate"
-                        max="5"
-                        placeholder="Voto"
-                        value={newComment.rate}
-                        onChange={handleInputChange}
-                    />
-                    <p>{rateError}</p>
-                    <textarea
-                        name="comment"
-                        placeholder="Commento"
-                        value={newComment.comment}
-                        onChange={handleInputChange}
-                    />
-                    <button type="submit">Invia commento</button>
-                </form>
-            </div> */}
-
-            {/* <Form onSubmit={postComment}>
-                <Row className="mb-3">
-                    <Form.Group as={Col} md="4" controlId="validationCustom01">
-                        <Form.Label>First name</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            placeholder="First name"
-                            defaultValue="Mark"
-                        />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationCustom02">
-                        <Form.Label>Last name</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            placeholder="Last name"
-                            defaultValue="Otto"
-                        />
-                    </Form.Group>
-                </Row>
-
-                <Button type="submit">Submit form</Button>
-            </Form> */}
-
-
-            {/* <Form onSubmit={postComment} className='container' style={{ maxWidth: " 50vh" }}>
-                <Row className="mb-3flex-column">
-                    <Form.Group md="4" controlId="rate" style={{ width: "15vh" }}>
-                        <Form.Label>Voto:</Form.Label>
-                        <Form.Control
-                            type="number"
-                            name="rate"
-                            placeholder="Voto"
-                            value={newComment.rate}
-                            onChange={handleInputChange}
-                            min="1"
-                            max="5"
-                            required
-                        />
-                        <p>{rateError}</p>
-                    </Form.Group>
-                    <Form.Group md="8" controlId="comment">
-                        <Form.Label>Commento:</Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            name="comment"
-                            placeholder="Inserisci un commento..."
-                            value={newComment.comment}
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </Form.Group>
-                </Row>
-                <Button className='my-4' type="submit">Invia commento</Button>
-            </Form> */}
-
-
-
-
-
-
-
-
-
 
             <hr></hr>
+
             <div className='container'>
                 <h3 className='ms-1 mt-5'>Commenti:</h3>
 
@@ -232,16 +145,26 @@ function BookDescription() {
                         <MoonLoader />
                     </div>
                 )}
-
                 {data.map((data, index) => (
                     <div key={index} className='my-5 comments'>
                         <h3>{data.author}</h3>
                         <h6>Voto: {data.rate}</h6>
                         <h5>{data.comment}</h5>
-                        <Trash3 onClick={() => deleteComment(url_api + data._id)} color="red" size={25} role="button" />
-                        {/* <button onClick={() => deleteComment(url_api + data._id)}><Trash3 className="ml-4" /></button> */}
+                        {data.author === 'morici.massimiliano.lavoro@gmail.com' && (
+                            <Trash3 onClick={() => deleteComment(url_api + data._id)} color="red" size={25} role="button" />
+                        )}
                     </div>
                 ))}
+
+                {/* {data.map((data, index) => (
+                    <div key={index} className='my-5 comments'>
+                        <h3>{data.author}</h3>
+                        <h6>Voto: {data.rate}</h6>
+                        <h5>{data.comment}</h5>
+                        <Trash3 onClick={() => deleteComment(url_api + data._id)} color="red" size={25} role="button" />
+                    </div>
+                ))} */}
+
             </div>
             <MyFooter />
         </>
