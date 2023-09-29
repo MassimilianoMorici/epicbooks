@@ -32,7 +32,7 @@ function useFetchData(url) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url]);
 
-    return { data, isloading, error }
+    return { data, setData, getData, isloading, error }
 
 }
 
