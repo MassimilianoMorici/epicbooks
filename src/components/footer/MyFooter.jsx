@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Facebook, Github, Instagram, Linkedin } from 'react-bootstrap-icons';
 
 
 
@@ -8,18 +8,30 @@ import { Container, Row, Col } from 'react-bootstrap';
 const MyFooter = () => {
     return (
         <footer className="bg-dark text-light py-3">
-            <Container>
-                <Row>
-                    <Col sm={4}>                             <p>Riga 1 del Footer</p>
-                    </Col>
-                    <Col sm={4}>
-                        <p>Riga 2 del Footer</p>
-                    </Col>
-                    <Col sm={4}>
-                        <p>Riga 3 del Footer</p>
-                    </Col>
-                </Row>
-            </Container>
+            <div className='container'>
+                <div className='d-flex justify-content-around mt-4'>
+                    <div>
+                        <Instagram className='' size={30} />
+
+                        <Facebook className='mx-3' size={30} />
+
+                        <Linkedin size={30} />
+
+                        <Github className='mx-3' size={30} />
+
+                        <p className='mt-3'>Centro assistenza</p>
+                        <p className='mt-3'>Note legali</p>
+                        <p className='mt-3'>© 2023 Max EPIBOOKS, Inc.</p>
+                    </div>
+
+                    <div>
+                        <br />
+                        <p className='mt-4'>Contattaci</p>
+                        <p className='mt-3'>Media Center</p>
+                        <p className='mt-3'>Informazioni</p>
+                    </div>
+                </div>
+            </div>
         </footer>
     )
 }

@@ -11,6 +11,7 @@ import Row from 'react-bootstrap/Row';
 import { Trash3, Pen, CheckCircleFill } from 'react-bootstrap-icons';
 import { Modal } from 'react-bootstrap'
 import AlertMessage from '../components/alertMessage/AlertMessage'
+import { useTheme } from '../contexts/ThemeContext'
 
 
 function BookDescription() {
@@ -148,11 +149,17 @@ function BookDescription() {
         }
     }
 
+    const { theme } = useTheme()
 
     return (
-        <>
+
+        <div className={theme === 'light' ? '' : 'bg_costum'}
+            style={{ color: theme === 'light' ? '#000000' : '#ffffff' }}>
             <MyNav />
-            <div className="container">
+
+
+            {/* SCHERMO GRANDE */}
+            <div className="container d-none d-md-flex d-xxl-flex">
                 <div className="row">
                     <div className="col">
                         <div className="d-flex flex-nowrap justify-content-evenly my-5">
@@ -194,26 +201,74 @@ function BookDescription() {
                                     </Row>
                                     <Button className='my-3' type="submit">Invia commento</Button>
                                 </Form>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+
+            {/* SCHERMO PICCOLO */}
+            <div className="container d-block d-md-none">
+                <div className="row">
+                    <div className="col">
+                        <div className='container d-flex justify-content-center mt-5'>
+                            <img src={bookPage[0].img} className='imgPage' alt='imageBook' />
+                        </div>
+                        <div className="d-flex flex-nowrap justify-content-evenly my-5">
+
+                            <div className='mx-5'>
+                                <h1>{bookPage[0].title}</h1>
+                                <h4 className='mt-3'>Categoria: {bookPage[0].category}</h4>
+                                <h6 className='mt-2'>ASIN: {bookPage[0].asin}</h6>
+                                <h6 className='mt-2'>Prezzo: {bookPage[0].price}€</h6>
+                                <hr className='mt-3'></hr>
+                                <h4 className='mt-2'>Inserisci un commento:</h4>
+
+                                <Form onSubmit={postComment}>
+                                    <Row className="flex-column">
+                                        <Form.Group md="4" controlId="rate" style={{ width: "130px" }}>
+                                            <Form.Label><span className='fw-bold'>Voto:</span></Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                name="rate"
+                                                placeholder="da 1 a 5"
+                                                value={newComment.rate}
+                                                onChange={handleInputChange}
+                                                min="1"
+                                                max="5"
+                                                required
+                                            />
+                                        </Form.Group>
+                                        <Form.Group md="8" controlId="comment" className='mt-2'>
+                                            <Form.Label><span className='fw-bold'>Commento:</span></Form.Label>
+                                            <Form.Control
+                                                as="textarea"
+                                                name="comment"
+                                                placeholder="Inserisci un commento..."
+                                                value={newComment.comment}
+                                                onChange={handleInputChange}
+                                                required
+                                            />
+                                        </Form.Group>
+                                    </Row>
+                                    <Button className='my-3' type="submit">Invia commento</Button>
+                                </Form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
             <hr></hr>
-
-
-
 
             {successMessage && (
                 <AlertMessage message={successMessage} >
                     <div className='color_mod'> <CheckCircleFill className='me-2' size={30} />{successMessage}</div>
                 </AlertMessage>
             )}
-
-
 
             <div className='container'>
                 <h3 className='ms-1 mt-5'>Commenti:</h3>
@@ -228,7 +283,7 @@ function BookDescription() {
                 {data.map((data, index) => (
                     <div key={index} className='my-5 comments'>
                         <div className='d-flex flex-wrap justify-content-between mb-3'>
-                            <h3>{data.author}</h3>
+                            <h3 className='text-ellipsis'>{data.author}</h3>
 
                             {/* SE SEI L'AUTORE DEL COMMENTO ALLORA PUOI MODIFICARLO O ELIMINARLO */}
                             {data.author === myEmail && (
@@ -283,7 +338,7 @@ function BookDescription() {
             </Modal>
 
             <MyFooter />
-        </>
+        </div>
     )
 }
 

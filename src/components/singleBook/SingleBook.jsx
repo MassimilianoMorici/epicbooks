@@ -18,24 +18,28 @@ const SingleBook = ({ book, selectedAsin, setSelectedAsin }) => {
         }
     };
 
-    const cardClassName = `mb-4 border-4 ${isSelected ? 'border-danger' : ''}`;
+    const cardClassName = `mb-4 border-4 modmia ${isSelected ? 'border-danger' : ''}`;
 
 
     return (
-        <Card className={cardClassName} style={{ width: '18rem' }} onClick={handleClick} >
+
+        <Card className={`${cardClassName} rounded`} style={{ width: '18rem' }} onClick={handleClick}>
             <Card.Img className="custom-card-img" style={{ height: '18rem' }} variant="top" src={book.img} />
-            <Card.Body>
-                <Card.Title>{book.title}</Card.Title>
-                <Card.Text>
-                    Categoria: {book.category}<br />
-                    Prezzo: {book.price}
-                </Card.Text>
-                <Card.Text className="d-flex flex-wrap justify-content-evenly">
-                    <Button href={url} variant="primary">Dettagli</Button>
-                    <span>{book.asin}</span>
-                </Card.Text>
+            <Card.Body className="d-flex flex-column">
+                <div className="d-flex flex-column flex-grow-1">
+                    <Card.Title className="card-with-ellipsis">{book.title}</Card.Title>
+                    <Card.Text></Card.Text>
+                </div>
+                <div className="mt-3 d-grid gap-2">
+                    <Button href={url} variant="danger" size="lg">Dettagli</Button>
+                </div>
             </Card.Body>
         </Card>
+
+
+
+
+
     )
 }
 
